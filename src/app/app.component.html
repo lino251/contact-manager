@@ -1,0 +1,19 @@
+<h1>Contact Manager</h1>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened class="content">
+
+    <!-- Navigate To Contacts Page -->
+    <div tabindex="1" class="selector">
+      <img [src]="contacts_icon" alt="" routerLink='contacts'>
+    </div><br /><br />
+
+    <!-- Navigate To About Page -->
+    <div tabindex="2"  class="selector">
+      <img [src]="info_icon" alt="" routerLink='about'>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

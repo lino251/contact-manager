@@ -1,0 +1,44 @@
+<mat-drawer-container class="container">
+    <mat-drawer mode="side" class='content' opened>
+
+        <!-- Search Field -->
+        <mat-form-field>
+            <mat-label>Search</mat-label>
+            <input matInput type="search" [(ngModel)]='searchInput' (ngModelChange)='search(searchInput)'>
+          </mat-form-field>
+
+        <!-- List Of Contacts -->
+        <mat-list >
+            <mat-list-item *ngFor="let item of contactInfo" (click)='selectContact(item)' tabindex="1">
+                <mat-icon class='circle' mat-list-icon>{{item.Initials}}</mat-icon>
+              <div mat-line>{{item.firstName + ' ' + item.lastName}}</div>
+              <div mat-line>{{item.cellNumber}}</div>
+            </mat-list-item>
+          </mat-list>
+
+    </mat-drawer>
+
+
+    <mat-drawer-content class="content" *ngIf="showInfo">
+        <!-- Contact Card -->
+        <div *ngFor='let item of selectedContactInfo'>
+        <mat-card >
+                <h2>{{item.firstName}} {{item.lastName}}</h2>
+
+                    <mat-card-content>
+                        <p for="Cellphone"><b>Cellphone: </b> {{item.cellNumber}}</p>              
+                        <p for="Address"><b>Address: </b> {{item.address}}</p>
+                        <p for="Email"><b>Email: </b> {{item.email}}</p>
+                    </mat-card-content>
+        </mat-card>
+
+        <h2>Contact Bio</h2>
+        <p>{{item.bio}}</p>
+    </div>
+    </mat-drawer-content>
+
+    <!-- Initial Load Display -->
+    <mat-drawer-content class="content" *ngIf='!showInfo'>
+        <i>Select A Contact First.</i>
+    </mat-drawer-content>
+</mat-drawer-container>
